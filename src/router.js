@@ -28,6 +28,23 @@ export default new Router({
       redirect: {
         name: 'home'
       }
+    },
+
+    {
+      path: '/books',
+      name: 'books',
+      component: () => import(/* webpackChunkName: "books" */ './views/Books.vue')
+    },
+
+    {
+      path: '/categories',
+      name: 'categories',
+      component: () => import('./views/Categories.vue')
+    },
+    {
+      path: '/category/:slug',
+      name: 'category',
+      component: () => import('./views/Category.vue')
     }
   ]
 })

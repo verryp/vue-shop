@@ -7,7 +7,7 @@
          <v-toolbar-side-icon @click="setSideBar(!sideBar)"></v-toolbar-side-icon> 
 
         <!-- header bagian tengah -->
-        <v-toolbar-title class="white--text">Vshop</v-toolbar-title>
+        <v-toolbar-title class="white--text">{{appName}}</v-toolbar-title>
 
         <!-- separator biar header kanan rata kanan -->
         <v-spacer></v-spacer>
