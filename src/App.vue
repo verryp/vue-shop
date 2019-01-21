@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
@@ -32,4 +32,43 @@ export default {
     }
   }
 }
+</script>
+-->
+
+<template>
+  <v-app>
+    <!-- komponen header -->
+    <c-header/>
+
+    <!-- komponen sidebar -->
+    <c-side-bar/>
+
+    <!-- konten utama -->
+    <v-content>
+      <v-slide-y-transition mode="out-in">
+        <router-view>
+
+        </router-view>
+      </v-slide-y-transition>
+    </v-content>
+
+    <!-- komponen footer -->
+    <c-footer/>
+  </v-app>
+</template>
+
+<script>
+  import CHeader from '@/components/CHeader.vue'
+  import CFooter from '@/components/CFooter.vue'
+  import CSideBar from '@/components/CSideBar.vue'
+
+  export default {
+    name : 'App',
+
+    components: {
+      CHeader,
+      CFooter,
+      CSideBar
+    },
+  }
 </script>

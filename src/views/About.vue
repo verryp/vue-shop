@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <v-container>
+      <h1>ini adalah halaman About Us</h1>
+    </v-container>
   </div>
 </template>
