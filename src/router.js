@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from './views/Home'
 import About from './views/About' // * atau pake import CHeader from '@/views/About.vue'
 
 Vue.use(Router)
@@ -45,7 +45,12 @@ export default new Router({
       path: '/category/:slug',
       name: 'category',
       component: () => import('./views/Category.vue')
-    }
+    },
+    {
+      path: '/book/:slug',
+      name: 'book',
+      component: () => import('./views/Book.vue')
+    },
   ]
 })
 

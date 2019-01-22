@@ -2,16 +2,13 @@
   <div>
     <v-container grid-list-md>
     <v-subheader> {{ category.name }} </v-subheader>
-    <v-card-media v-if="category.image" :src="getImage('/categories/' + category.image)" height="150px"></v-card-media>
+    <v-card-media v-if="category.image" :src="getImage('/category_images/'+category.image)" height="150px"></v-card-media>
     <v-subheader> Books by "{{ category.name }}" category" </v-subheader>
       <v-layout row wrap>
         <!-- data books yang berelasi akan ditampilkan menggunakan looping -->
         <v-flex v-for="book in books" xs6 :key="book.id">
           <v-card :to="'/book/'+ book.slug">
-            <v-card-media v-if="book.cover" 
-              :src="getImage('/books/'+book.cover)"
-              height="150px"
-            >
+            <v-card-media v-if="book.cover" :src="getImage('/books-covers/'+book.cover)" height="150px">
               <v-container fill-height fluid pa-2>
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
@@ -39,12 +36,7 @@
 
       <template>
         <div class="text-xs-center">
-          <v-pagination
-            v-model="page"
-            @input="go"
-            :length="lengthPage"
-            :total-visible="5"
-          ></v-pagination>
+          <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="5"></v-pagination>
         </div>
       </template>
     </v-container>

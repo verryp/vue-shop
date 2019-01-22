@@ -9,11 +9,11 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  baseURL: process.env.baseURL || process.env.apiUrl || "http://larashop.test/api"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
-  baseURL: 'http://larashop.test:8080/api',
-    // baseURL: process.env.VUE_APP_API_URL+'/api',
+  // baseURL: 'http://larashop.test/api',
+  // baseURL: process.env.VUE_APP_API_URL+'/api',
 };
 
 const _axios = axios.create(config);

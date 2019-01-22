@@ -5,13 +5,13 @@
         All Books 
       </v-subheader>
       <v-layout row wrap>
-        <v-flex       v-for="(book, index) in books" xs6 :key       = "index">
+        <v-flex v-for="(book, index) in books" xs6 :key= "index">
         <v-card       :to="'/book/'+book.slug">
-        <v-card-media :src="getImage('/books-covers/'+book.cover)" height = "150px">
+        <v-card-media :src="getImage('/books-covers/'+book.cover)" height="150px">
               <v-container fill-height fluid pa-2>
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
-                    <span class = "title white--text text-block" v-text = "book.title"></span>
+                    <span class = "title white--text text-block" v-text= "book.title"></span>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -36,12 +36,7 @@
 
     <template>
       <div class = "text-xs-center">
-        <v-pagination
-              v-model      = "page"
-              @input       = "go"
-            :length        = "lengthPage"
-            :total-visible = "5"
-        ></v-pagination>
+        <v-pagination v-model= "page" @input= "go" :length="lengthPage" :total-visible= "5"></v-pagination>
       </div>
     </template>
   </div>
@@ -72,21 +67,22 @@ export default {
     }, 
 
     methods: {
-        go() {
-            let url = '/books'
+        go(){
 
-            if(this.page > 0) url = '/books?page='+this.page
+          let url = '/books'
 
-            this.axios.get(url)
-                .then((response) => {
-                    let response_data = response.data
-                    let books = response.data.data
-                    this.lengthPage = response_data.meta.last_page
-                    this.books = books
-                })
-                .catch((error) =>{
-                    console.log(error.response)
-                })
+          if(this.page>0) url = '/books?page='+this.page
+
+          this.axios.get(url)
+            .then((response) => {
+              let response_data = response.data
+              let books = response_data.data
+              this.lengthPage = response_data.meta.last_page
+              this.books = books
+            })
+            .catch((error) => {
+              console.log(error.response)
+            })
         },
     },
 

@@ -11,7 +11,7 @@
                 </v-card-text>
 
                 <!-- deskripsi aplikasi -->
-                <v-card-text v-if="isHome" class="white--text pt-0">
+                <v-card-text v-if="isHome" class="white--text">
                     Front-end dari larashop dari support by vuetify
                 </v-card-text>
 

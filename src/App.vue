@@ -54,6 +54,9 @@ export default {
 
     <!-- komponen footer -->
     <c-footer/>
+
+    <!-- komponen alert -->
+    <c-alert/>
   </v-app>
 </template>
 
@@ -68,7 +71,8 @@ export default {
     components: {
       CHeader,
       CFooter,
-      CSideBar
+      CSideBar,
+      CAlert: () => import('@/components/CAlert')
     },
   }
 </script>

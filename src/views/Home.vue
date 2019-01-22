@@ -60,10 +60,7 @@
       <v-flex
         v-for="(book, index) in books" xs6 :key="index">
         <v-card :to="'/book/'+ book.slug">
-          <v-card-media
-            :src="getImage('/books-covers/'+book.cover)"
-            height="150px"
-          >
+          <v-card-media :src="getImage('/books-covers/'+book.cover)" height="150px">
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
@@ -114,7 +111,7 @@ export default {
   methods: {
     getImage (image){
         if(image!=null && image.length>0){
-            return "http://larashop.test:8080/images"+ image
+            return "http://larashop.test/images"+ image
         }
         // default image jika tidak ditemukan, 
         // letakkan image ini pada folder /public/img di project Vue
