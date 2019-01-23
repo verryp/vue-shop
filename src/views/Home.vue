@@ -109,22 +109,23 @@ export default {
     books: []
   }),
   methods: {
-    getImage (image){
-        if(image!=null && image.length>0){
-            return "http://larashop.test/images"+ image
-        }
-        // default image jika tidak ditemukan, 
-        // letakkan image ini pada folder /public/img di project Vue
-        return "/img/unavailable.png"
-    },
-
+    // * Masih cara hardcode
     // getImage (image){
     //     if(image!=null && image.length>0){
-    //         return process.env.VUE_APP_BACKEND_URL+"/images"+ image
+    //         return "http://larashop.test/images"+ image
     //     }
-    //     // default image jika tidak ditemukan
+    //     // default image jika tidak ditemukan, 
+    //     // letakkan image ini pada folder /public/img di project Vue
     //     return "/img/unavailable.png"
     // },
+
+    getImage (image){
+        if(image!=null && image.length>0){
+            return process.env.VUE_APP_BACKEND_URL+"/images"+ image
+        }
+        // default image jika tidak ditemukan
+        return "/img/unavailable.png"
+    },
   },
   created(){
     let count = 2

@@ -8,7 +8,7 @@
                 <v-icon class="white--text">close</v-icon>
             </v-btn>
 
-            <v-toolbar-title>Vshop</v-toolbar-title>
+            <v-toolbar-title>{{appName}}</v-toolbar-title>
         </v-toolbar>
 
         <v-list>

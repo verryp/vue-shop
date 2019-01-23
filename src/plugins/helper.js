@@ -7,8 +7,8 @@ const Helper = {
 
         Vue.prototype.getImage = function (image){
             if(image!=null && image.length>0){
-                return "http://larashop.test/images"+ image
-                // return process.env.VUE_APP_BACKEND_URL + "/images"+ image
+                // return "http://larashop.test/images"+ image
+                return process.env.VUE_APP_BACKEND_URL + "/images"+ image
             }
             return "/img/unavailable.png"
         }

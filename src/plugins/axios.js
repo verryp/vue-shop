@@ -9,7 +9,7 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  baseURL: process.env.baseURL || process.env.apiUrl || "http://larashop.test/api"
+  baseURL: process.env.baseURL || process.env.apiUrl || process.env.VUE_APP_API_URL+'/api'
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
   // baseURL: 'http://larashop.test/api',
