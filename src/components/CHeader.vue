@@ -26,7 +26,7 @@
         </v-btn>
 
         <!-- kolom pencarian di bawah header -->
-        <v-text-field slot="extension" hide-details append-icon="mic" flat label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
+        <v-text-field v-if="isHome" @click="setStatusDialog(true)" slot="extension" hide-details append-icon="mic" flat label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
     </v-toolbar>
 </template>
 
@@ -41,13 +41,21 @@ export default {
     methods: {
         ...mapActions({
             setSideBar : 'slide/setSideBar',
+            setStatusDialog: 'dialog/setStatus',
+            setComponent: 'dialog/setComponent'
         }),
+
+        search() {
+            this.setSideBar(false)
+            this.setComponent('search')
+            this.setStatusDialog(true)
+        }
     },
 
     computed: {
         ...mapGetters({
             sideBar : 'slide/sideBar',
-            countCart: 'cart/count'
+            countCart: 'cart/count',
         }),
 
         isHome() {

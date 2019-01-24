@@ -57,6 +57,15 @@ export default {
 
     <!-- komponen alert -->
     <c-alert/>
+
+    <keep-alive>
+      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-botton-transition">
+        <component :is="currentComponent"></component>
+      </v-dialog>
+    </keep-alive>
+
+    <search />
+
   </v-app>
 </template>
 
@@ -65,14 +74,40 @@ export default {
   import CFooter from '@/components/CFooter.vue'
   import CSideBar from '@/components/CSideBar.vue'
 
+  import { mapGetters, mapActions } from "vuex";
+
   export default {
     name : 'App',
 
     components: {
-      CHeader,
-      CFooter,
-      CSideBar,
-      CAlert: () => import('@/components/CAlert')
+      CHeader, CFooter, CSideBar,
+      CAlert: () => import('@/components/CAlert'),
+      Search: () => import('@/views/Search.vue'),
+      Login: () => import('@/views/Login.vue'),
+      Register: () => import('@/views/Register.vue')
+    },
+
+    methods: {
+      ...mapActions ({
+        setStatusDialog: 'dialog/setStatus'
+      })
+    },
+
+    computed: {
+      ...mapGetters ({
+        statusDialog: 'dialog/status',
+        currentComponent: 'dialog/component'
+      }),
+
+      dialog: {
+        get() {
+          return this.statusDialog
+        },
+
+        set(value) {
+          this.setStatusDialog(value)
+        }
+      }
     },
   }
 </script>

@@ -10,7 +10,7 @@ const Helper = {
                 // return "http://larashop.test/images"+ image
                 return process.env.VUE_APP_BACKEND_URL + "/images"+ image
             }
-            return "/img/unavailable.png"
+                return "/img/unavailable.png"
         }
     }
 }
