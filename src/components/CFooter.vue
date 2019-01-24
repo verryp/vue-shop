@@ -11,8 +11,8 @@
                 </v-card-text>
 
                 <!-- deskripsi aplikasi -->
-                <v-card-text v-if="isHome" class="white--text">
-                    Front-end dari larashop dari support by vuetify
+                <v-card-text  v-if="isHome" class="white--text pt-0">
+                    <p>Front-end dari larashop dari support by vuetify</p>
                 </v-card-text>
 
                 <v-layout justify-center row wrap>
@@ -24,7 +24,7 @@
 
                     <!-- teks copyright -->
                     <v-flex secondary darken-2 py-3 text-xs-center white--text xs12>
-                        &copy;2019 - Vshop by <strong>VDev</strong>
+                        &copy;2019 - Vshop by <strong>VDev</strong> powered by <code>Vuetify</code>
                     </v-flex>
                 </v-layout>
             </v-card>

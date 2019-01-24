@@ -14,10 +14,7 @@
       <v-flex v-for="category in categories" xs6 :key="category.id">
         <v-card :to="'/category/'+ category.slug">
           <!-- untuk load image supaya lebih rapi akan kita buatkan method getImage -->
-          <v-card-media
-            :src="getImage('/category_images/'+category.image)"
-            height="150px"
-          >
+          <v-card-media :src="getImage('/category_images/'+category.image)" height="150px">
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
@@ -57,8 +54,7 @@
     </v-subheader>
     <v-layout row wrap>
       <!-- data buku kita tampilkan dalam dua kolom (xs6) -->
-      <v-flex
-        v-for="(book, index) in books" xs6 :key="index">
+      <v-flex v-for="(book, index) in books" xs6 :key="index">
         <v-card :to="'/book/'+ book.slug">
           <v-card-media :src="getImage('/books-covers/'+book.cover)" height="150px">
             <v-container fill-height fluid pa-2>
@@ -88,6 +84,7 @@
   </v-container>
   </div>
 </template>
+
 <style scoped>
 /* mengatur posisi judul */
 .text-block {
@@ -114,18 +111,21 @@ export default {
     //     if(image!=null && image.length>0){
     //         return "http://larashop.test/images"+ image
     //     }
-    //     // default image jika tidak ditemukan, 
-    //     // letakkan image ini pada folder /public/img di project Vue
+        // * default image jika tidak ditemukan, 
+        // * letakkan image ini pada folder /public/img di project Vue
     //     return "/img/unavailable.png"
     // },
 
-    getImage (image){
-        if(image!=null && image.length>0){
-            return process.env.VUE_APP_BACKEND_URL+"/images"+ image
-        }
-        // default image jika tidak ditemukan
-        return "/img/unavailable.png"
-    },
+    // * Pake Cara Mixin
+    // getImage (image){
+    //     if(image!=null && image.length>0){
+    //         return process.env.VUE_APP_BACKEND_URL+"/images"+ image
+    //     }
+        // * default image jika tidak ditemukan
+    //     return "/img/unavailable.png"
+    // },
+
+    // ! NB: karena sudah menggunakan helper.js, getImage() sudah didefinisikan secara global
   },
   created(){
     let count = 2

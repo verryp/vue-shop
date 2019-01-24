@@ -61,7 +61,7 @@ export default {
     data() {
         return {
             books: [],
-            page: 0,
+            page: 1,
             lengthPage: 0
         }
     }, 

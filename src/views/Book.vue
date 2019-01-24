@@ -66,7 +66,7 @@ export default {
     methods: {
       ...mapActions({
           addCart: 'cart/add',
-          setAlert: 'alert/set',
+          setAlert: 'alert/setAlert',
       }),
 
       buy() {
@@ -80,8 +80,7 @@ export default {
     },
     created(){
         let slug = this.$route.params.slug
-        // let url = '/books/slug/'+slug
-        // url = encodeURI(url)
+        
         this.axios.get('/books/slug/'+slug)
         .then((response) => {
           let book = response.data.data

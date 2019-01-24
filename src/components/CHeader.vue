@@ -12,7 +12,7 @@
 
         <!-- header bagian tengah -->
         <!-- <v-toolbar-title class="white--text">{{appName}}</v-toolbar-title> -->
-        <v-toolbar-title class="white--text">Vshop</v-toolbar-title>
+        <v-toolbar-title class="white--text">{{appName}}</v-toolbar-title>
 
         <!-- separator biar header kanan rata kanan -->
         <v-spacer></v-spacer>
@@ -40,13 +40,13 @@ export default {
 
     methods: {
         ...mapActions({
-            setSideBar : 'setSideBar',
+            setSideBar : 'slide/setSideBar',
         }),
     },
 
     computed: {
         ...mapGetters({
-            sideBar : 'sideBar',
+            sideBar : 'slide/sideBar',
             countCart: 'cart/count'
         }),
 

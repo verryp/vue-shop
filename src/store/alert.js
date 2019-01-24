@@ -1,16 +1,14 @@
-// import { state } from "fs";
-
 export default {
     namespaced: true,
 
     state: {
         status  : false,
         text    : '',
-        type    : 'success', // * warning, error
+        type    : 'success', // todo boleh pake warna warning ato error, terserah tema kalian di vuetify.js
     },
 
     mutations: {
-        set: (state, payload) => {
+        setAlert: (state, payload) => {
             state.status    = payload.status,
             state.text      = payload.text,
             state.type      = payload.type
@@ -18,8 +16,8 @@ export default {
     },
 
     actions: {
-        set: ({commit}, payload) => {
-            commit('set', payload)
+        setAlert: ({commit}, payload) => {
+            commit('setAlert', payload)
         },
     },
 

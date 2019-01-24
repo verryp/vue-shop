@@ -82,7 +82,7 @@ export default {
     computed: {
         // * mapping state sideBar menggunakan map getter
         ...mapGetters({
-            sideBar     : 'sideBar',
+            sideBar     : 'slide/sideBar',
         }),
 
         // * ubah properti data drawer menjadi computed dimana nilainya membaca dari state sidebar
@@ -99,7 +99,7 @@ export default {
 
     methods: {
         ...mapActions({
-            setSideBar : 'setSideBar',
+            setSideBar : 'slide/setSideBar',
         }),
     },
 }

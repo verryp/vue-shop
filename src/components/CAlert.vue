@@ -18,6 +18,7 @@ export default {
             text    : 'alert/text',
             type    : 'alert/type',
         }),
+        
         alert: {
             get() {
                 return this.status
@@ -35,7 +36,7 @@ export default {
 
     methods: {
         ...mapActions({
-            setAlert    : 'alert/set',
+            setAlert    : 'alert/setAlert',
         }),
 
         close() {

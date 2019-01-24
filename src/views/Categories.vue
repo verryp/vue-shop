@@ -64,7 +64,7 @@
     data () {
       return {
         categories: [],
-        page: 0,
+        page: 1,
         lengthPage: 0
       }
     },
