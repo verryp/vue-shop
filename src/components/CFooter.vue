@@ -5,14 +5,14 @@
 
                 <!-- menu ikon media social -->
                 <v-card-text>
-                    <v-btn v-for="(sosmed, index) in sosmeds" :key="index" :href="sosmed.route" class="mx-3 white--text" icon>
+                    <v-btn v-for="(sosmed, index) in sosmeds" :key="index" target="_blank" :href="sosmed.route" class="mx-3 white--text" icon>
                         <v-icon size="24px">{{ sosmed.icon }}</v-icon>
                     </v-btn>
                 </v-card-text>
 
                 <!-- deskripsi aplikasi -->
                 <v-card-text  v-if="isHome" class="white--text pt-0">
-                    <p>Front-end dari larashop dari support by vuetify</p>
+                    Front-end dari larashop dari support by vuetify
                 </v-card-text>
 
                 <v-layout justify-center row wrap>

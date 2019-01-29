@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'search',
@@ -71,7 +71,14 @@ export default {
             }
         },
 
-         mounted(){
+        computed: {
+            ...mapGetters({
+                statusDialog: 'dialog/status',
+            })
+        },
+
+        // ? belum ngerti buat ngejelasinnya :v
+        mounted(){
             if(this.$refs.txtSearch != undefined){
                 this.$nextTick(() => this.$refs.txtSearch.focus())
             }

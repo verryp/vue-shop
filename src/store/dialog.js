@@ -3,7 +3,7 @@ export default {
 
     state: {
         status: false,
-        component: '', // * cari ato login
+        component: 'login', // * ntar buat ngeset komponen search, register ato login
     },
 
     mutations: {

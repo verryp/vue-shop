@@ -18,7 +18,7 @@
         <v-spacer></v-spacer>
 
         <!-- header bagian kanan -->
-        <v-btn icon>
+        <v-btn icon @click="cart()">
             <v-badge left overlap color="pink">
                 <span slot="badge" v-if="countCart>0">{{ countCart }}</span>
                 <v-icon>shopping_cart</v-icon>
@@ -26,7 +26,7 @@
         </v-btn>
 
         <!-- kolom pencarian di bawah header -->
-        <v-text-field v-if="isHome" @click="setStatusDialog(true)" slot="extension" hide-details append-icon="mic" flat label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
+        <v-text-field v-if="isHome" @click="search()" slot="extension" hide-details append-icon="mic" flat label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
     </v-toolbar>
 </template>
 
@@ -49,6 +49,12 @@ export default {
             this.setSideBar(false)
             this.setComponent('search')
             this.setStatusDialog(true)
+        },
+
+        cart() {
+            this.setStatusDialog(true)
+            this.setComponent('cart')
+            this.setSideBar(false)
         }
     },
 

@@ -46,9 +46,7 @@ export default {
     <!-- konten utama -->
     <v-content>
       <v-slide-y-transition mode="out-in">
-        <router-view>
-
-        </router-view>
+        <router-view></router-view>
       </v-slide-y-transition>
     </v-content>
 
@@ -60,6 +58,7 @@ export default {
 
     <keep-alive>
       <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-botton-transition">
+        <!-- komponen login -->
         <component :is="currentComponent"></component>
       </v-dialog>
     </keep-alive>
@@ -84,7 +83,8 @@ export default {
       CAlert: () => import('@/components/CAlert'),
       Search: () => import('@/views/Search.vue'),
       Login: () => import('@/views/Login.vue'),
-      Register: () => import('@/views/Register.vue')
+      Register: () => import('@/views/Register.vue'),
+      Cart: () => import('@/views/Cart.vue')
     },
 
     methods: {

@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home'
 import About from './views/About' // * atau pake import CHeader from '@/views/About.vue'
+import store from './store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -51,7 +52,39 @@ export default new Router({
       name: 'book',
       component: () => import('./views/Book.vue')
     },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('./views/Checkout.vue'),
+      meta: {auth: true} // menandakan route ini hanya boleh diakses ketika user sudah login
+    }
   ]
 })
 
-// export default router
+router.beforeEach((to, from, next) => {
+  // jika routing ada meta auth-nya maka
+  if (to.matched.some(record => record.meta.auth)) {
+    // jika user adalah guest(yang belum login)
+    if(store.getters['auth/guest']){
+      // tampilkan pesan bahwa harus login dulu
+      store.dispatch('alert/setAlert', {
+        status : true,
+        text  : 'Login doloe!',
+        type  : 'error',
+      })
+
+      store.dispatch('setPrevUrl', to.path) // * nyimpen current url
+      // tampilkan form login
+      store.dispatch('dialog/setComponent', 'login')
+      store.dispatch('dialog/setStatus', true)
+    }
+    else{
+      next()
+    } 
+  }
+  else{
+      next()
+  }
+})
+
+export default router

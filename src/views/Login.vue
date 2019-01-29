@@ -14,10 +14,10 @@
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field v-model="email" :rules="emailRules" label="E-mail" required append-icon="email"></v-text-field>
                 <v-text-field v-model="password" :append-icon="showPassword ? 'visibility' : 'visibility_off'" :rules="passwordRules" 
-                :type="showPassword ? 'text' : 'password'" 
-                label="Password" 
-                hint="Minimal 6 karakter" 
-                counter @click:append = "showPassword = !showPassword">
+                    :type="showPassword ? 'text' : 'password'" 
+                    label="Password" 
+                    hint="Minimal 6 karakter" 
+                    counter @click:append = "showPassword = !showPassword">
                 </v-text-field>
 
                 <div class="text-xs-center">
@@ -57,6 +57,7 @@ export default {
     computed: {
         ...mapGetters ({
             user: 'auth/user',
+            prevUrl: 'prevUrl',
         })
     },
 
@@ -91,7 +92,11 @@ export default {
                                 type: 'success',
                             })
 
-                            this.setStatusDialog(false)
+                            if(this.prevUrl.length > 0)
+                                this.$router.push(this.prevUrl) // * untuk kembali ke halaman sebelumnya setelah login
+
+                            // this.setStatusDialog(false)
+                            this.close()
                         } else {
                             this.setAlert({
                                 status: true,

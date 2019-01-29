@@ -11,6 +11,7 @@
             <v-toolbar-title>{{appName}}</v-toolbar-title>
         </v-toolbar>
 
+        <!-- jika user masih belum login, artinya guest state masih sama dengan nol -->
         <v-list v-if="guest">
             <!-- cuma tombol register -->
             <v-list-tile>
@@ -29,6 +30,7 @@
             </v-list-tile>
         </v-list>
 
+        <!-- guest sudah berhasil login -->
         <v-list v-if="!guest">
             <v-list-tile>
                 <v-list-tile-avatar>
