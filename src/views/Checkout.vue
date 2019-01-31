@@ -20,86 +20,101 @@
                     </v-card-actions>
                 </v-container>
             </v-card>
+        </div>
+        <v-subheader>Belanjaan Anda</v-subheader>
+        <div v-if="countCart>0">
+            <v-card flat>
+                <v-list two-line>
+                    <template v-for="item in carts">
+                        <v-list-tile :key="item.id" avatar>
+                            <v-list-tile-avatar>
+                                <img :src="getImage('/books-covers/'+item.cover)" alt="">
+                            </v-list-tile-avatar>
 
-            <v-subheader>Belanjaan Anda</v-subheader>
-            <div v-if="countCart>0">
-                <v-card flat>
-                    <v-list two-line>
-                        <template v-for="item in carts">
-                            <v-list-tile :key="item.id" avatar>
-                                <v-list-tile-avatar>
-                                    <img :src="getImage('/books-covers/'+item.cover)" alt="">
-                                </v-list-tile-avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title v-html="item.title"></v-list-tile-title>
+                                <v-list-tile-sub-title>
+                                    Rp. {{item.price.toLocaleString('id-ID')}}
+                                    ({{item.quantity}} item(s))
+                                </v-list-tile-sub-title>
+                                <v-list-tile-sub-title>
+                                    <v-divider/>
+                                </v-list-tile-sub-title>
+                            </v-list-tile-content>
 
-                                <v-list-tile-content>
-                                    <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                                    <v-list-tile-sub-title>
-                                        Rp. {{item.price.toLocaleString('id-ID')}}
-                                        ({{item.quantity}} item(s))
-                                    </v-list-tile-sub-title>
-                                    <v-list-tile-sub-title>
-                                        <v-divider/>
-                                    </v-list-tile-sub-title>
-                                </v-list-tile-content>
+                            <v-list-tile-action>
+                                <v-list-tile-action-text>{{ item.weight}} Kg.</v-list-tile-action-text>
+                            </v-list-tile-action>
+                        </v-list-tile>
+                    </template>
+                </v-list>
 
-                                <v-list-tile-action>
-                                    <v-list-tile-action-text>{{ item.weight}} Kg.</v-list-tile-action-text>
-                                </v-list-tile-action>
-                            </v-list-tile>
-                        </template>
-                    </v-list>
-
-                    <v-container>
-                        <v-card-actions>
-                            Subtotal
-                            <v-spacer/>
-                            Rp. {{ totalPrice.toLocaleString('id-ID') }}
-                        </v-card-actions>
-                    </v-container>
-                </v-card>
-            </div>
-
-            <v-subheader>Courier</v-subheader>
-            <div>
-                <v-card flat>
-                    <v-container>
-                        <v-select v-model="courier" :items="couriers" @change="getServices"
-                            item-text="text" item-value="id" label="Courier" persistent-hint single-line
-                        ></v-select>
-
-                        <v-select v-model="service" v-if="courier" :items="services" @change="calculateBill"
-                            item-text="resume" item-value="service" label="Courier Service" persistent-hint single-line
-                        ></v-select>
-
-                        <v-card-actions>
-                            Subtotal
-                            <v-spacer/>
-                            Rp. {{ shippingCost.toLocaleString('id-ID')}}
-                        </v-card-actions>
-                    </v-container>
-                </v-card>
-            </div>
-
-            <v-subheader>Total</v-subheader>
-            <v-card>
                 <v-container>
-                    <v-layout row wrap>
-                        <v-flex xs6 text-xs-center>
-                            Total belanjaan : ({{totalQuantity}} item(s))
-                            <div class="title">
-                                {{totalBill.toLocaleString('id-ID')}}
-                            </div>
-                        </v-flex>
-                        <v-flex xs6 text-xs-center>
-                            <v-btn color="orange">
-                                <v-icon light>attach_money</v-icon> &nbsp;
-                                Pay
-                            </v-btn>
-                        </v-flex>
-                    </v-layout>
+                    <v-card-actions>
+                        Subtotal
+                        <v-spacer/>
+                        Rp. {{ totalPrice.toLocaleString('id-ID') }}
+                    </v-card-actions>
                 </v-container>
             </v-card>
         </div>
+
+        <v-subheader>Courier</v-subheader>
+        <div>
+            <v-card flat>
+                <v-container>
+                    <v-select v-model="courier" :items="couriers" @change="getServices" item-text="text" 
+                        item-value="id" label="Courier" persistent-hint single-line
+                    ></v-select>
+
+                    <v-select v-model="service" v-if="courier" :items="services" @change="calculateBill"
+                        item-text="shippingCost" item-value="service" label="Courier Service" persistent-hint single-line
+                    ></v-select>
+
+                    <v-card-actions>
+                        Subtotal
+                        <v-spacer/>
+                        Rp. {{ shippingCost.toLocaleString('id-ID')}}
+                    </v-card-actions>
+                </v-container>
+            </v-card>
+        </div>
+
+        <v-subheader>Total</v-subheader>
+        <v-card>
+            <v-container>
+                <v-layout row wrap>
+                    <v-flex xs6 text-xs-center>
+                        Total belanjaan : ({{totalQuantity}} item(s))
+                        <div class="title">
+                            {{totalBill.toLocaleString('id-ID')}}
+                        </div>
+                    </v-flex>
+                    <v-flex xs6 text-xs-center>
+                        <v-btn color="orange" @click="dialogConfirm=true" :disabled="totalBill==0">
+                            <v-icon light>attach_money</v-icon> &nbsp;
+                            Pay
+                        </v-btn>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-card>
+
+        <template>
+            <v-layout row justify-center>
+                <v-dialog v-model="dialogConfirm" persistent max-width="290">
+                    <v-card>
+                        <v-card-title class="headline">Confirmation!</v-card-title>
+                        <v-card-text>Jika anda lanjutkan, transaksi akan diproses</v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" flat @click="cancel">Cancel</v-btn>
+                            <v-btn color="green darken-1" flat @click="pay">Continue</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-layout>
+        </template>
     </div>
 </template>
 
@@ -120,6 +135,7 @@ export default {
             services: [],
             shippingCost: 0,
             totalBill: 0,
+            dialogConfirm: false
         }
     },
 
@@ -143,7 +159,7 @@ export default {
             return this.cities.filter(function(city) {
                 if(city.province_id == province_id) return city
             })
-        }
+        },
     },
 
     methods: {
@@ -153,6 +169,7 @@ export default {
             setProvinces: 'region/setProvinces',
             setCities: 'region/setCities',
             setCart: 'cart/setCart',
+            setPayment: 'setPayment'
         }),
 
         saveShipping() {
@@ -165,7 +182,7 @@ export default {
 
             let config = {
                 headers: {
-                    'Authorization': 'Bearer' + this.user.api_token,
+                    'Authorization': 'Bearer ' + this.user.api_token,
                 },
             }
 
@@ -227,14 +244,63 @@ export default {
                 })
         },
 
-        calculateBill() {
+        calculateBill(){
             let selectedService = this.services.find((service) => {
-                return (service.service == this.service)
+                return (service.service==this.service)
             })
 
             this.shippingCost = selectedService.cost
             this.totalBill = parseInt(this.totalPrice) + parseInt(this.shippingCost)
-        }
+        },
+
+        pay() {
+            this.dialogConfirm = false
+            let safeCart = JSON.stringify(this.carts)
+            let formData = new FormData()
+
+            // let courier = this.courier
+            // let service = this.service
+
+            formData.set('courier', this.courier)
+            formData.set('service', this.service)
+            formData.set('carts', safeCart);
+
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.user.api_token,
+                }
+            }
+
+            this.axios.post('/payment', formData, config)
+                .then((response) => {
+                    let responses = response.data
+
+                    if(responses && responses.status == 'success') {
+                        this.setPayment(responses.data)
+                        this.$router.push({path: "/payment"})
+                        this.setCart([])
+                    }
+
+                    this.setAlert({
+                        status: true,
+                        text: responses.message,
+                        type: responses.status
+                    })
+                })
+                .catch((error) => {
+                    let errors = error.response
+
+                    this.setAlert({
+                        status: true,
+                        text: errors.data.message,
+                        type : 'error'
+                    })
+                })
+        },
+
+        cancel() {
+            this.dialogConfirm = false
+        },
     },
 
     created() {

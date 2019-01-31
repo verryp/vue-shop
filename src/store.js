@@ -12,22 +12,32 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     prevUrl: '',
+    payment: []
   },
 
   mutations: {
     setPrevUrl: (state, value) => {
       state.prevUrl = value
-    }
+    },
+
+    setPayment: (state, value) => {
+      state.payment = value
+    },
   },
 
   actions: {
     setPrevUrl: ({commit}, value) => {
       commit('setPrevUrl', value)
-    }
+    },
+
+     setPayment: ({commit}, value) => {
+       commit('setPayment', value)
+     }
   },
 
   getters: {
     prevUrl: state => state.prevUrl,
+    payment: state => state.payment
   },
 
   modules: {

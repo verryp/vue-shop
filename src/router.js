@@ -57,7 +57,7 @@ const router = new Router({
       name: 'checkout',
       component: () => import('./views/Checkout.vue'),
       meta: {auth: true} // menandakan route ini hanya boleh diakses ketika user sudah login
-    }
+    },
   ]
 })
 

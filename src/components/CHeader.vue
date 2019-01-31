@@ -61,7 +61,7 @@ export default {
     computed: {
         ...mapGetters({
             sideBar : 'slide/sideBar',
-            countCart: 'cart/count',
+            countCart: 'cart/totalQuantity',
         }),
 
         isHome() {
