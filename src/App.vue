@@ -63,7 +63,7 @@ export default {
       </v-dialog>
     </keep-alive>
 
-    <search />
+    <!-- <search /> -->
 
   </v-app>
 </template>
